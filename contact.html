@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact StepUp for all your footwear needs. Get in touch with our team for inquiries, support, and more.">
+    <meta name="keywords" content="contact, footwear, customer service, StepUp">
+    <meta name="author" content="StepUp">
+    <title>Contact Us - StepUp</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="StepUp Home"><i class="fas fa-shoe-prints"></i> StepUp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="product.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="product-detail.html">Featured</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html" aria-current="page">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" aria-label="Shopping Cart"><i class="fas fa-shopping-cart"></i> <span class="badge bg-danger">0</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">Get In Touch</h1>
+            <p class="lead">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-form-container">
+                        <h3 class="mb-4">Send Us a Message</h3>
+                        <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" required aria-required="true">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required aria-required="true" aria-describedby="emailHelp">
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            </div>
+                            <!-- <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890">
+                            </div> -->
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <select class="form-select" id="subject" required aria-required="true">
+                                    <option value="" selected disabled>Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="order">Order Status</option>
+                                    <option value="return">Returns & Exchanges</option>
+                                    <option value="product">Product Information</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5" required aria-required="true" maxlength="500"></textarea>
+                                <div class="text-muted small mt-1" id="charCounter">0/500 characters</div>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="newsletter">
+                                <label class="form-check-label" for="newsletter">
+                                    Subscribe to our newsletter for updates and offers
+                                </label>
+                            </div>
+                            <button type="submit" class="btn-submit" aria-describedby="submitStatus">
+                                <span id="submitText">Send Message</span>
+                                <div class="spinner" id="spinner"></div>
+                            </button>
+                            <div class="success-message" id="successMessage" role="alert" aria-live="polite">
+                                <i class="fas fa-check-circle me-2"></i>
+                                Thank you for your message! We'll get back to you soon.
+                            </div>
+                            <div id="submitStatus" class="sr-only"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-overlay">
+            <h5>Find Us Here</h5>
+            <p class="mb-0">123 Fashion Street, New York</p>
+        </div>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.6174459948963!2d-73.98784368459395!3d40.74844097932818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259317b9b2b9b%3A0x4b5c3c9c9c9c9c9c!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1234567890" 
+            width="100%" 
+            height="400" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy"
+            title="StepUp Store Location">
+        </iframe>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="text-center mb-5">Frequently Asked Questions</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                                    What is your return policy?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We offer a 30-day return policy for all unused items in their original packaging. Simply contact our customer service team to initiate a return.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                                    How long does shipping take?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Standard shipping typically takes 5-7 business days. Express shipping options are available for 2-3 business day delivery.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                                    Do you offer international shipping?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we ship to over 25 countries worldwide. International shipping rates and delivery times vary by location.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                                    How can I track my order?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Once your order ships, you'll receive a tracking number via email. You can use this number to track your package on our website or the carrier's site.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="mb-3">Follow Us On Social Media</h2>
+            <p class="lead">Stay connected for the latest updates, promotions, and style tips</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-icon" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container text-center">
+            <h2 class="mb-4">Subscribe to Our Newsletter</h2>
+            <p>Get exclusive offers and be the first to know about new arrivals</p>
+            <form class="newsletter-form mt-4" onsubmit="subscribeNewsletter(event)" novalidate>
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Enter your email" required aria-required="true" aria-describedby="newsletterHelp">
+                    <button class="btn btn-warning" type="submit">Subscribe</button>
+                </div>
+                <div id="newsletterHelp" class="form-text">We respect your privacy and won't share your email.</div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>StepUp</h4>
+                    <p>Your premium destination for quality footwear.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="products.html">Products</a>
+                        <a href="about.html">About</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <div class="social-links mt-3">
+                        <a href="#" class="text-white me-3" aria-label="Facebook"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="text-white me-3" aria-label="Twitter"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a href="#" class="text-white me-3" aria-label="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-white" aria-label="YouTube"><i class="fab fa-youtube fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-white">
+            <div class="text-center">
+                <p>&copy; 2024 StepUp. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+                Item added to cart!
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+  <script>
+    /**
+     * Contact Form and Website Interaction Script
+     * Handles form submissions, validation, and UI interactions
+     */
+
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize all functionality
+        initializeFormHandlers();
+        initializeSmoothScrolling();
+        initializeFormValidation();
+        initializePhoneFormatting();
+        initializeCharacterCounter();
+        addAccessibilityStyles();
+    });
+
+    /**
+     * Initialize all form event handlers
+     */
+    function initializeFormHandlers() {
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', handleContactFormSubmit);
+        }
+
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', handleNewsletterSubmit);
+        }
+    }
+
+    /**
+     * Handle contact form submission with loading states and validation
+     * @param {Event} event - Form submission event
+     */
+    function handleContactFormSubmit(event) {
+        event.preventDefault();
+        
+        // Get form elements
+        const form = event.target;
+        const submitBtn = form.querySelector('.btn-submit');
+        const submitText = document.getElementById('submitText');
+        const spinner = document.getElementById('spinner');
+        const successMessage = document.getElementById('successMessage');
+        const submitStatus = document.getElementById('submitStatus');
+        
+        // Validate form before submission
+        if (!validateForm(form)) {
+            showNotification('Please fill in all required fields correctly.', 'error');
+            return;
+        }
+        
+        // Show loading state
+        setLoadingState(submitBtn, submitText, spinner, true);
+        submitStatus.textContent = 'Submitting your message...';
+        
+        // Collect form data
+        const formData = new FormData(form);
+        const formDataObject = Object.fromEntries(formData.entries());
+        
+        // Simulate API call with proper error handling
+        simulateApiCall(formDataObject)
+            .then(response => {
+                // Success handling
+                setLoadingState(submitBtn, submitText, spinner, false);
+                submitStatus.textContent = 'Message submitted successfully!';
+                successMessage.style.display = 'block';
+                
+                // Reset form
+                form.reset();
+                document.getElementById('charCounter').textContent = '0/500 characters';
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                    submitStatus.textContent = '';
+                }, 5000);
+            })
+            .catch(error => {
+                // Error handling
+                setLoadingState(submitBtn, submitText, spinner, false);
+                submitStatus.textContent = 'Error submitting message. Please try again.';
+                showNotification('Failed to submit your message. Please try again later.', 'error');
+                console.error('Form submission error:', error);
+            });
+    }
+
+    /**
+     * Handle newsletter form submission
+     * @param {Event} event - Form submission event
+     */
+    function handleNewsletterSubmit(event) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const emailInput = form.querySelector('input[type="email"]');
+        const email = emailInput.value;
+        
+        // Validate email
+        if (!validateEmail(email)) {
+            showNotification('Please enter a valid email address.', 'error');
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Subscribing...';
+        
+        // Simulate API call
+        simulateApiCall({ email: email, type: 'newsletter' })
+            .then(response => {
+                // Success handling
+                showNotification(`Thank you for subscribing with ${email}!`, 'success');
+                form.reset();
+            })
+            .catch(error => {
+                // Error handling
+                showNotification('Failed to subscribe. Please try again later.', 'error');
+                console.error('Newsletter subscription error:', error);
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
+    }
+
+    /**
+     * Set or remove loading state on form submission
+     * @param {HTMLElement} button - Submit button
+     * @param {HTMLElement} text - Button text element
+     * @param {HTMLElement} spinner - Loading spinner element
+     * @param {boolean} isLoading - Whether to show loading state
+     */
+    function setLoadingState(button, text, spinner, isLoading) {
+        if (isLoading) {
+            text.style.display = 'none';
+            spinner.style.display = 'block';
+            button.disabled = true;
+        } else {
+            text.style.display = 'inline';
+            spinner.style.display = 'none';
+            button.disabled = false;
+        }
+    }
+
+    /**
+     * Simulate API call with Promise
+     * @param {Object} data - Data to send
+     * @returns {Promise} - Promise that resolves with response
+     */
+    function simulateApiCall(data) {
+        return new Promise((resolve, reject) => {
+            // Simulate network delay
+            setTimeout(() => {
+                // Simulate 95% success rate
+                if (Math.random() > 0.05) {
+                    resolve({ success: true, message: 'Data submitted successfully' });
+                } else {
+                    reject(new Error('Network error'));
+                }
+            }, 2000);
+        });
+    }
+
+    /**
+     * Show notification toast
+     * @param {string} message - Message to display
+     * @param {string} type - Type of notification (success, error, info)
+     */
+    function showNotification(message, type = 'info') {
+        const toastElement = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const toastIcon = toastElement.querySelector('.toast-header i');
+        
+        // Set message
+        toastMessage.textContent = message;
+        
+        // Set icon based on type
+        toastIcon.className = type === 'success' ? 'fas fa-check-circle text-success me-2' : 
+                              type === 'error' ? 'fas fa-exclamation-circle text-danger me-2' : 
+                              'fas fa-info-circle text-primary me-2';
+        
+        // Show toast
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    }
+
+    /**
+     * Initialize smooth scrolling for anchor links
+     */
+    function initializeSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                
+                // Skip if it's just "#" or empty
+                if (targetId === '#' || !targetId) return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    }
+
+    /**
+     * Initialize form validation feedback
+     */
+    function initializeFormValidation() {
+        const inputs = document.querySelectorAll('.form-control, .form-select');
+        
+        inputs.forEach(input => {
+            // Validate on blur
+            input.addEventListener('blur', function() {
+                validateField(this);
+            });
+            
+            // Remove validation on focus to allow editing
+            input.addEventListener('focus', function() {
+                this.classList.remove('is-invalid', 'is-valid');
+            });
+        });
+    }
+
+    /**
+     * Validate a single form field
+     * @param {HTMLElement} field - Form field to validate
+     * @returns {boolean} - Whether the field is valid
+     */
+    function validateField(field) {
+        const isValid = field.checkValidity();
+        
+        if (isValid) {
+            field.classList.remove('is-invalid');
+            field.classList.add('is-valid');
+        } else {
+            field.classList.remove('is-valid');
+            field.classList.add('is-invalid');
+        }
+        
+        return isValid;
+    }
+
+    /**
+     * Validate entire form
+     * @param {HTMLFormElement} form - Form to validate
+     * @returns {boolean} - Whether the form is valid
+     */
+    function validateForm(form) {
+        const inputs = form.querySelectorAll('.form-control, .form-select');
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
+        
+        return isValid;
+    }
+
+    /**
+     * Validate email format
+     * @param {string} email - Email to validate
+     * @returns {boolean} - Whether the email is valid
+     */
+    function validateEmail(email) {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    /**
+     * Initialize phone number formatting
+     */
+    // function initializePhoneFormatting() {
+    //     const phoneInput = document.getElementById('phone');
+    //     if (!phoneInput) return;
+        
+    //     phoneInput.addEventListener('input', function(e) {
+    //         let value = e.target.value.replace(/\D/g, '');
+            
+    //         // Format phone number as (XXX) XXX-XXXX
+    //         if (value.length > 0) {
+    //             if (value.length <= 3) {
+    //                 value = `(${value}`;
+    //             } else if (value.length <= 6) {
+    //                 value = `(${value.slice(0, 3)}) ${value.slice(3)}`;
+    //             } else {
+    //                 value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`;
+    //             }
+    //         }
+            
+    //         e.target.value = value;
+    //     });
+        
+        // Clean up on form submission
+        // const form = phoneInput.form;
+        // if (form) {
+        //     form.addEventListener('submit', function() {
+                // Remove formatting before submission
+        //         phoneInput.value = phoneInput.value.replace(/\D/g, '');
+        //     });
+        // }
+    // }
+
+    /**
+     * Initialize character counter for message field
+     */
+    function initializeCharacterCounter() {
+        const messageInput = document.getElementById('message');
+        const charCounter = document.getElementById('charCounter');
+        
+        if (!messageInput || !charCounter) return;
+        
+        const maxLength = 500;
+        
+        messageInput.addEventListener('input', function() {
+            const length = this.value.length;
+            charCounter.textContent = `${length}/${maxLength} characters`;
+            
+            // Update counter color based on length
+            charCounter.classList.remove('text-warning', 'text-danger');
+            
+            if (length > maxLength * 0.9) {
+                charCounter.classList.add('text-warning');
+            }
+            
+            if (length >= maxLength) {
+                charCounter.classList.add('text-danger');
+                // Truncate if over limit
+                this.value = this.value.substring(0, maxLength);
+                charCounter.textContent = `${maxLength}/${maxLength} characters`;
+            }
+        });
+    }
+
+    /**
+     * Add accessibility styles for screen readers
+     */
+    function addAccessibilityStyles() {
+        // Check if styles already exist
+        if (document.getElementById('accessibility-styles')) return;
+        
+        const style = document.createElement('style');
+        style.id = 'accessibility-styles';
+        style.textContent = `
+            .sr-only { 
+                position: absolute; 
+                width: 1px; 
+                height: 1px; 
+                padding: 0; 
+                margin: -1px; 
+                overflow: hidden; 
+                clip: rect(0, 0, 0, 0); 
+                white-space: nowrap; 
+                border-width: 0; 
+            }
+            
+            /* Focus styles for better accessibility */
+            .btn:focus, .form-control:focus, .form-select:focus {
+                outline: 2px solid #0d6efd;
+                outline-offset: 2px;
+            }
+            
+            /* High contrast mode support */
+            @media (prefers-contrast: high) {
+                .btn, .form-control, .form-select {
+                    border: 2px solid;
+                }
+            }
+            
+            /* Reduced motion support */
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+        `;
+        
+        document.head.appendChild(style);
+    }
+
+    // Make functions globally accessible for inline event handlers
+    window.handleSubmit = handleContactFormSubmit;
+    window.subscribeNewsletter = handleNewsletterSubmit;
+    window.showToast = showNotification;
+</script>
+</body>
+</html>

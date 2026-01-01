@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - StepUp</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-shoe-prints"></i> StepUp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="product-detail.html">Featured</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> <span class="badge bg-danger" id="cartCount">0</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Our Products</h1>
+            <p class="lead">Discover our complete collection of premium footwear</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <div class="row">
+            <!-- Filters Sidebar -->
+            <div class="col-lg-3">
+                <div class="filter-section">
+                    <h5 class="mb-3">Categories</h5>
+                    <div class="mb-4">
+                        <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+                        <button class="filter-btn" onclick="filterProducts('running')">Running</button>
+                        <button class="filter-btn" onclick="filterProducts('casual')">Casual</button>
+                        <button class="filter-btn" onclick="filterProducts('sports')">Sports</button>
+                        <button class="filter-btn" onclick="filterProducts('formal')">Formal</button>
+                    </div>
+
+                    <h5 class="mb-3">Price Range</h5>
+                    <div class="mb-4">
+                        <input type="range" class="form-range" min="0" max="300" id="priceRange" oninput="updatePriceFilter(this.value)">
+                        <div class="d-flex justify-content-between">
+                            <span>$0</span>
+                            <span id="priceValue">$300</span>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-3">Size</h5>
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="size7">
+                            <label class="form-check-label" for="size7">Size 7</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="size8">
+                            <label class="form-check-label" for="size8">Size 8</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="size9">
+                            <label class="form-check-label" for="size9">Size 9</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="size10">
+                            <label class="form-check-label" for="size10">Size 10</label>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-3">Brand</h5>
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="nike">
+                            <label class="form-check-label" for="nike">Nike</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="adidas">
+                            <label class="form-check-label" for="adidas">Adidas</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="puma">
+                            <label class="form-check-label" for="puma">Puma</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="col-lg-9">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <p class="mb-0">Showing <span id="productCount">12</span> products</p>
+                    <select class="form-select w-auto" onchange="sortProducts(this.value)">
+                        <option value="default">Sort by: Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Best Rating</option>
+                    </select>
+                </div>
+
+                <div class="row" id="productGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+
+                <div class="text-center mt-5">
+                    <button class="btn btn-outline-primary" onclick="loadMoreProducts()">Load More</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div class="toast-container">
+        <div class="custom-toast" id="toast">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                <span id="toastMessage">Item added to cart!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Extended product data
+        const allProducts = [
+            { id: 1, name: "Urban Runner Pro", price: 129.99, oldPrice: 159.99, image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUSExIVFRUWFxcXFxcYFhYZGRgVFxYWGBcaGBgaHSggGR0lGxYVITEhJSkrLi4uFx8zODMsNygtLysBCgoKDg0OGhAPGi0hHiUrLSstLisrKy0tKy0tLS0tLS0tKy8rLS8tKy0tKy0rKy4tLi0rLSsrLS0tLS0rKy0tLf/AABEIAK4BIQMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAAAQIDBAUGB//EAD4QAAEDAgMFBgQDBwQCAwAAAAEAAhEDIQQSMQVBUWFxBhMigZGhMrHB8ELR4QcUM1JicpIWI4LxFdJDorP/xAAaAQEBAQEBAQEAAAAAAAAAAAAAAQIDBAUG/8QAJREBAAICAQMDBQEAAAAAAAAAAAECAxExBCFREiJBEzJhgZFx/9oADAMBAAIRAxEAPwD3FCEIBCEIBCEIBCEIBCEIBCEIBCEIBCEIBCEIBCEIBCEiBVHXrtYJcfqfRYmI7U0O8dRZVYXtMOJdDWnhO87uE2mbLHdtV1Qk5iXSYFg0NBiX2JJ5M4bpViNras15jTW2jtiuJ7qiyJtnqAF/9o0FpNzu04ZdXtJXZPe4apaCSzNBYT+GGlrngXLc0Aau3KCs2qyajc7i4ZSanhYC4iHBrneEAD8QtJkiYWuKMfidMCXWGYxq4CAdZjRa0ixgNssqR3VZlSwcIIMsOjhvLTucLFalHFg2NiuM2h2dZUa4U/8Aafkc1r2HIy5zDvGthxYHCSxpAM3nVaez8SXANDjWIs6oGhjOg3OA/pnmprY6lCzcNii2ztPl+i0QZWQqifiWjVwWZtPGEnIDYanieCpCotRVJlufvrOPsVLSrNdoVh03qWhWykH16JNSJbaEgKVZUIQhAIQhAIQhAIQhAIQhAIQhAIQhAIQhAIQhAIQhAJHOi5SPdAkrMxNYvtoPvXirEbDMftXKDEwODSXHo0CfLVczj8RVrtJNZ1KgAczRGY3IPeVCCG8MjA46cQtx+Hduv7FZX/iIqCCG0mwW0wJOYCASTa3iM3N9y36Yla3ms7jln4PAGm9haTTzzAIBc1kEl5zTkMAkf2wYmFLh8M0OqCoZqhwh2Vr++DiMpykXPibobNc2TYlabNmsz53Oe/8AlD3FwaNYk3eJJPjLongABPRwNJru8FNrXAfELQL6DQWLr80iNcJNptO7TtUpbMzmH0WMABnLll5OWDacoADpvckK7RoMpMDKYa1rRZpJgeZkqcgn+kX6ngR+t00gbh+qrO1alhS45qrw7gxtmDrveetuSvzFojks3B46lWL8hBLHZXRIuNL/AIhYj1VppI0Mjn9x7BQ2nc5TUsblYfbz1VMVhvkfJJU0I4j791NKqVaqgfVUT6qgfUXWGJa+EqS0KyNB1Wdst0t6FaRFuHPhzE2tzssysNfAVJYL3Fjy6+RCsrkuw7HUTVw9TM6o0l76pMitnc4tqjgS3wkaA0yOE9auLYQhCAQhCAQhCAQhCAQhCAQhCAQhCAQhCAQhNqPABJ0F0DlUx+MFMC0uOgGqpNxzqhJaSAPIeR3pDPG/NaiqbSPrOcLnyt9FGWlNzEbgpWmVo2a1/EQnwmuJHRRU64neW+w5g+WnMILAcJiRP3oipEQY81Xx1JrgARcGWngVHTJIknW8TMA7vv8AVEOqOuoyEzuPEH94QB+GwBJtc6nUW5KPEYwCwBzWOURmvucD8A5662VCUcPTpudlaxjqhl0QC43Onk424FTSs5+I8Qa5zRIvSEXZe5m538Jgq6Hag7vkSY87XQPcU1kt0uOHDp7pEpdCgx8bRLIPxMOjvkDwMKl3i6kURlgjUeIG4PIj6rGxuwyL0jP9Djf/AIu0d5wVuLJpLsYyD1+i2HbuoVDY2BcxnjEEmYkWHOFoTJtoPmszKxB+GIa8PIEiWzvykiR0mD5LaWEVp7Lrl9JrjqdfIwsWaW0IQsgQhCAQhCAQhCAQhCAQhCAQhCAQqGN2k1gIb4ncBcDqdB0WYMY534Hu5gtieUkBWI2m1zH7VDSWA3GpF/RQU6ucT4o/q3+RTQ/QlhB55foVMHhbiNIZmi2X3T2v5J6iquDbn1+kcUExCrvqZSOPIfEPopMPUmQfLnxTMVa+/wCm9BOTInl9hVNDHKR00/RK15AtofuVWwpf4s7QMvwAOkuZc5jubMx/xVEuJpvc0Bjg0giCW5gL3tIm2idUqtaJmGiLk2AmPi0JEG2qpvxhectOHajNfJu/Fq4jg0gX1WK3beEzgVMUzP3j6cP8GWox2V4ykAM8W86yDN0GwazqhgHLI1NnvjUsYScgvzNxeywNrbVhtP8AdKrGtqAuFYU++a7KYLaeVwDnzxJ6bxzO0dq4nFnDVGfu9Ou6pVbhRTe794w9VrXBzMQDIyua2HWGUwV0HZ3s93dFtImp3EMq06FQNFbD15JqeJoDcpJm4mb2IlTfhquon3cMnAg99lY1zqoqmoXCHw4QDUxFScrPCSO7B0BguENXfTAb5/4AWMb9wVXBYVlFvd0mtaJmwkZiLuJPxvNpJ4qV17SZJ9+vlKkRqG8uT6k71o5tQnRpPSOPE/KFNRF/ESP6T66+tgntgWGgQ56rke56RtRQHrbn5DX19U1ryYtG+/lu80VacAd5HQ/RMNWo22UOHEGD5gpjTCfmQFR5DSSL6Aa3NvMrZ2QIphvCyw3GXAcLn6ffMLb2UbHyUsLyEIWFCEIQCEIQCEIQCEIQCFFXrBok+lpPRZtXaLz8IA85P5KxAu43F5LAST7cys19dxMklQl28jz19/zUgC1EaZ2jOFY4RHoSPkp6dOBAAAG4KMt+/P1T2vI5j35Qd/mqJYTXNA19lKy4kKPEUpCCCliL6W3n6jjuU9Zo0nX7B+SqT5RboocZVeGHI3O4QWtkAmN0uIHqVRIx830P1Cj2hiHywtpucS6DliBIPiMmzRvS4cHKMwhxkkSDEk2kWnopJREVbEtpgXnc2BJcRqGjlaXGwlYFTtBhqgq58TTy0WuqPo035iGtu4uIvUIjQWC0Nv7JZiaT6Ty5oe0tztLszSZfIjcCAcuhEjguHGycVWa1gwuGpvwAc0tLHNGKc5p+Fw8JY9hB1BDnXhSVhd2j2irVm922lXwtJrqTqrmAOrnB1WvhzGgHK6WgkCSGkG11S2PsavWpObSc6nTq03UMRUrUyRXZmd3b6NN0P7xjIplzgAbEaLotgbCogUsU794zBgNNuJqOc7DjKRlY3kLBzpMcLhdCXG+7nv8ALh+imvK78KmD2ZRpEPbSb3uRrDUytNV7WNDfE4CSTaTvVvLx9B1sSd50S6ab0FVDYSUNZ4Ae4n8vROCipmDBtw/qjgTyjmEVYc77/Ib0n39/fkmgx93MWumlyJBw9TxPl6aBBMpkpzWn9fVFAN49Pr6KXS53JGiPviUrj9/JAUeJ36rW2U65HJZTFobMPj8ipKthCELAEIQgEJFEcWz+YW1vMeiCZCo1NoD8InrZVamJe7fHRXSbaVXEtbqfJUq2PJs0Rz3qpCAtaTYdJudeabGgPtMTru3J6QlUF53R7yo2kGcpEgwY3HWDwKdF5vpESY9NJ56pBUkkQbRfcZ/l6b5hA4O5XRPD7/LXVRiY8RBPIECJtvN4RmjXl5Dpx9tNFRMx15Gu8Tx4hJi6xy+EX4fkoi7gfPcfzCc52o0PzHEIM/ZVepUYXVKL6JzENa+MxaN5AJid29Wi4aTc3jpr8x6ptauACeEXOl907zy1UTXOdcC1/i8Njyu7z8KCYlAO5VqlJ+peIAH4ST4TIEGSeObWQLFNFAjV7tf5WN8zDffqgtOeCNbRMgxbiDu6qOOh6/CJnQelja9k3uj/ADu/+v5KNtN295JESSxt9DIEafKEE2WTJueJ4xFuCIVfK46ZDHFlpNjcHXWd6cc4/C3yc4DSNL2jdognSEqucQRq13WGu87ET6bk04tuhIBvYmDy+ID7G9QWMyNbHQqIvGu7jujronEopxHC/I+Wh/7UYdMxrw0PolzoJB1++h3IJGDj6ff/AEpTUCrFp4yOevrv8/VRg7rz7jnz8kFwO3ps9OP38/NQ5x5cuG+E4OQTtK0NlHxjz+SymuWpsYS/oCpPCttCELAEjnQJKVZmNr5jlHwjXmfyCsQGYrFl9hZvz/RU2sy2A8O6+kn3knqrQamli3EaZRz9lKgAj26c/CdPmmFwHDQmJg2PA7uc8OKB0pCVGXHn+nGyZ3vlabgi3mqJpSEqA4gcRx1GnFHfj7hBNKSVD3w4o74cUD6QcC4ucCCRkAbBaIEhxk5/FJmBExfVFOmGtDWgNaJgbtZt6pveBNEAucNXRmub5dLaDU6aoAAOmMzYdFwR4hBkA2cJ0cEx1N+ucWuJZMEiJF+BI8ypS9NLkETMOAQ6SXDRx3TqANAOQCdm3RBiIEXvuP05pZSOEoHB8nUamIPA3TXM4W1J8xFjuOnpzlMc431mDpF98iRqI05+jw4G40+9EEefkflu4ceXNJlzCdNYMXvvtcD5/N7xPW3tPp1UIdHLSxIkkzrFh9UEwq8o5Wt6cU0uTHneNd4sJ623aqMvnQ248d4jjI3oJDU4ev5cUxz9wHWZ+e88lG5+4WHyHK2qY6ooo7lo+GWniCR8kwF4uCCOdp4QRY+iaan3ccD5pHVUCjFHeCPflqJ5nTgntrzpf8r7hf8A7UAqXPqlMHUKi02upDVaddN3I8uCzizgfI3H5hJTcSTJEDW/mADx0tuQX2P1MkzodPD66zvHAJ3eKn3gHD3TW4gGwlx4NE/LRQaTXrodhUoaXnfYdB+vyXMUaTzr4R5E/kF0+wn+Et4X9VmVaiEIWRhdo9uCgAxt6jh5NGkn3gclkbP26LCoB/c2fcLF7S182Kq8nZR0aAPoqDKq+Nm6vNXJM1nt4fVxdHjtjjcd3ozKgcJBBHEIK4zZe1HUjr4d43Efmuwp1A4Bw0IBHRfT6Xqozx4mOYeDqOnnFP4K4JjgpFG9ep50DqYvYX15xpPFRlnXWTc3NteVtFO5MKoiLeZ47vTTRIGcyddQ2/W27d03p7imEoEDBxJ6htzxMDVGQdeobfrZGZJKBO76HeSWiSdxMRp0TRR/t5eHRx1Ou/h7p+ZGZA3uRuDeXh03nrJSZCNN+pk6xqGk6WAgFOLkkoGNd5+UCQYMTpfcfeClDwdEVBPoRvjzGhUTyRc8dSY14cb7jx1QPqHfwgptM3d1I1vYAgRw8R9uNkNUxAaS7cCIAniTa33KKXI2vGt5vN+cgIHlI8TvjmImOF935nqglRveoIntLenQkXtAEyNx3qv30A6nmDmE7wN5AI+90tXEKpWeDuH19UU44humYecjhOvXio6lTfbqII9lA89fVV6sCLgegt/1KC33g3JM6r0Q5w8LT52VqngSfidHIIqM1QDc7k5labAE9AT76K5RwFMGcoJ4m5VsIjMNGqTAYQN7paD0A+qe3BVSAC5tMDQNlzv8jAnnBWiCiUFals1g1l5/qM+2nsrjWgCAIHJICguUVICtPYdT/cjiD9CsgOVvZlWKjTzj1spI6tCELI8n7RU8mKrNO95cOjvEPmqWZegdq+zX7z/uUyG1miBPwvb/ACu+h5rzp5LHFjwWvacpaYkO1ggL43U4ZraZ+H2ulzResR8rbHyup7NY2R3ROl29N4+q45j4vxV7A4ktcHNMEaLzYcs4csX+Pn/HXqMUZaTH8d/KY4qvh8YHiRY7xwPBK6ov0z88e4qNzlGXppcqHFyY4ppcmFyIfKSUzMkLkEmZIXKMuSFyKlLk3Moi9NNRETZkZ1WdVTHV0FkhvD3PGdJhDqio1MSoX4pRWg6qqdbEqo+sSqzqwmJvwFz6BFhbdVUL6vFJTpPduyjnr6blboYQC+p4m59UVXZTc7QQOJ19Fao4QC+p4nVThqcFANCcEiQKCQJ0qMJZVD5SEqvicUyn/Ee1n9zgPms6t2kw7Zhznx/I0n3MBZm0RzLUVmeIbOZLK5DFdrnGRSpgQQCXmSCRI8ItpzWRV2pia7svePcToynIn/izVcpz1h1r09p57O7xm0qVL+JUAPDVx8hdY/8A599aoynRaQC9sT8TjmEC1gJhVdkdhsZWuaYotP4qhg/4iXesL0Ls12Qo4SHk95VAjORAbxyN3dbnms+q9+I1C6x0+dy6RCIQuunnCo7S2RRriKtNrjEB0eIdHahX0JMRPaViZjvDynbnZLEYd2am11enBgtaM7f7m/i6t9AueoY6PWIvIM6EbjyXuywds9j8JiSXPpZXuuXsJY4niYsT1BXjy9HW32vdi66Y7XchsTbDHeFxDXbnG08idxW5cbz81z22ewVagZwuau0i+Zze8bfTQBw05rFwe0cVh3Bho1xNhSfSfBi5yggEW/lO5dMWW2OPTeO3lnJhpl92Of07sk8QfvqmlzuA9f0WGztTSBy1GlptJb423APJw10haWH2nQqfBWpk8MwDv8TdeqmWluJeW2G9eYWC88EzvORUpbvTV0czDV5H0KY7Ejg7/F35KZBCCD94Eb/8XfkmurjipymoK5rjimOrDifQ/krcIhBnurj+r/F35KJ1WdGvPlHzWkQkyoM0tedGR1dHylH7tU3lo6D6k/RaWVGVQZw2eD8RLupt6Cys0sM1ogADop8qbXqtpiXuawcXODR7ptRlQFm4jtFh2/jzngwE++nus/FdqwBNOkXCJzFwiImQGzPquVstY5l0jFeeIdESkc6BJsOJsPdcPjNt4h//AMmURpTGUR119102A/Z6/FUW1ziwS9jXsljnjxCfFL59CsRmi32xtucPp+6dExXaLD07Z854MGb3091SHagukUsM9/V30AN+XVWqX7MsXdrq9CJkOAfa0HwHo3fxXadkOyowIf8A7pqGplnwhoGXNECSfxcdyzFslp8LMYqxzuXF0KO1a38PDCkDvc0N/wD0P0Vp3YnaNRpL8UwGLMD3gHkS1oA9CvTUq16N8zLn9TXEQ8VHYXHF0OoNBk3FRpbG7xEyfMSuw7LdhhTZUbi2UqmfLlAzEsgOkZ7G8iw4LuUKVw1idtWz2tGnLUf2e4BrpFJ0EyWmpULSeYLl0GC2fSoty0qbKY4NaG/LVWkLcUrHEOc3tPMhCELTIQhCAQhCAQhCBEJUIMzaewcPiP4tFrj/ADRDv8hdcP2s7Elop/ulBzmgHOc4Lpm1nG9ju4L0tC53xVtDrjzXpPaXgrsBiaJ/h16Rm3hqNvprEFdHXp7Vw4bmpGrrMM7yLkDxU4JkXuLTderIAWK4ZrxaXS/U+rmsPIf9XPYYq4fKdPic2/Rw+qmq9rmt1oP8nMNl6s5gOolcDtX9nRqVHPp12taSSGuYTlBMwCHCw0FtIS05a8TspOG0+6Nf1hjtjSOtGr5ZD9VN/quhAdlqQ4SDDSDGsEOgqZ37MK2n7xSg/wBL/wA13h2Bh3Nb3lCk9wABJYLnefMq1vmnnsXjBHHd56O1uH4VP8R85UdbtfSaSO6rSOTP/ZdztLsZg6tNzBQbTLhZ9MBrmkXBBHPcbHQrkan7NsQ4k99RM7znk8zbUqWvmjjutIwTzuGf/rKlr3VQAak5LD1Tq3a6m2B3VS4BElkEHQggmQr+F/ZtiGPY/vqPgex8Q++VwOscua9C/wDGUCS7uKUnU5GyfOFa2yzz2Zv9Gs9u7yhvbAOgNo6kNkvMSTAnK0nWB5qnie1GJJIaKbOjS4+pJHsvVdtdlMJi2gVaDZHwub4HN6ObBjkbLHofs4woJL31qnAF4AA/4gH3WbRm8tVvh+YcRsFmLxr3024gyGZoLiybgeHKItN54p+0Ow+0KTw5lFtaDJe2qJ5y18E8NSvUtk9ncLhjmo0Q10RmlznQYkZnEmLCy1VYw7j3T3ZnPqfZHZ4rQ7GY2o4gYYsBJu5zGgD1k+QXpH+k8NWoUqeKw9F72saHOa2PEAMxa4QRJErokLVMVa/li+a1/wAOc2d2JwVF2YUc3AVCXhvQO+sroWNAEAQOATkLpFYjhi1ptzIQhCrIQhCAQhCAQhCAQhCAQhCD/9k=", rating: 4.5, category: "running", badge: "Sale" },
+            { id: 2, name: "Classic Leather Boot", price: 189.99, image: "data:image/jpeg;base64,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", rating: 4.8, category: "formal" },
+            { id: 3, name: "Sport Elite X", price: 149.99, image: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/SEPTEMBER/22/430xUqUO_a331f61112f5428a89b6122396912252.jpg", rating: 4.6, category: "sports", badge: "New" },
+            { id: 4, name: "Casual Comfort", price: 89.99, oldPrice: 119.99, image: "https://picsum.photos/seed/prod4/300/250", rating: 4.3, category: "casual", badge: "Sale" },
+            { id: 5, name: "Marathon Master", price: 179.99, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXSmeAQpEF8NWkn_hJO4QOSKoyQF1PatAhbg&s", rating: 4.7, category: "running" },
+            { id: 6, name: "Street Style", price: 99.99, image: "data:image/jpeg;base64,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", rating: 4.4, category: "casual" },
+            { id: 7, name: "Pro Basketball", price: 159.99, image: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/SEPTEMBER/22/430xUqUO_a331f61112f5428a89b6122396912252.jpg", rating: 4.9, category: "sports", badge: "Hot" },
+            { id: 8, name: "Executive Oxford", price: 219.99, image: "https://www.bfgcdn.com/1500_1500_90/124-0958-0511/reebok-womens-classic-az-sneakers.jpg", rating: 4.5, category: "formal" },
+            { id: 9, name: "Trail Blazer", price: 139.99, image: "https://www.bfgcdn.com/1500_1500_90/124-0958-0511/reebok-womens-classic-az-sneakers.jpg", rating: 4.6, category: "running" },
+            { id: 10, name: "Weekend Sneaker", price: 79.99, oldPrice: 99.99, image: "https://www.bfgcdn.com/1500_1500_90/124-0958-0511/reebok-womens-classic-az-sneakers.jpg", rating: 4.2, category: "casual", badge: "Sale" },
+            { id: 11, name: "Training Pro", price: 169.99, image: "https://cdn.shopify.com/s/files/1/0631/9810/1734/files/100251852B2496_500x.jpg?v=1750469148", rating: 4.7, category: "sports" },
+            { id: 12, name: "Business Loafer", price: 149.99, image: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/SEPTEMBER/22/430xUqUO_a331f61112f5428a89b6122396912252.jpg", rating: 4.4, category: "formal" }
+        ];
+
+        let displayedProducts = [...allProducts];
+        let cartCount = 0;
+
+        // Load products
+        function loadProducts() {
+            const productGrid = document.getElementById('productGrid');
+            productGrid.innerHTML = displayedProducts.map((product, index) => `
+                <div class="col-md-4 mb-4" style="animation-delay: ${index * 0.1}s">
+                    <div class="product-card position-relative" onclick="viewProduct(${product.id})">
+                        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                        <div class="overflow-hidden">
+                            <img src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-rating">
+                                ${generateStars(product.rating)}
+                                <span class="text-muted">(${product.rating})</span>
+                            </div>
+                            <p class="product-price">
+                                $${product.price}
+                                ${product.oldPrice ? `<span class="old-price">$${product.oldPrice}</span>` : ''}
+                            </p>
+                            <button class="btn-add-cart" onclick="addToCart(event, ${product.id})">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('productCount').textContent = displayedProducts.length;
+        }
+
+        // Generate star rating
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= Math.floor(rating)) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i - 0.5 <= rating) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            return stars;
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter products
+            if (category === 'all') {
+                displayedProducts = [...allProducts];
+            } else {
+                displayedProducts = allProducts.filter(p => p.category === category);
+            }
+            
+            loadProducts();
+        }
+
+        // Sort products
+        function sortProducts(sortBy) {
+            switch(sortBy) {
+                case 'price-low':
+                    displayedProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    displayedProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    displayedProducts.sort((a, b) => b.rating - a.rating);
+                    break;
+                default:
+                    displayedProducts = [...allProducts];
+            }
+            loadProducts();
+        }
+
+        // Update price filter
+        function updatePriceFilter(value) {
+            document.getElementById('priceValue').textContent = `$${value}`;
+            displayedProducts = allProducts.filter(p => p.price <= value);
+            loadProducts();
+        }
+
+        // Add to cart
+        function addToCart(event, productId) {
+            event.stopPropagation();
+            cartCount++;
+            document.getElementById('cartCount').textContent = cartCount;
+            showToast('Item added to cart!');
+        }
+
+        // View product details
+        function viewProduct(productId) {
+            window.location.href = 'product-detail.html?id=' + productId;
+        }
+
+        // Load more products
+        function loadMoreProducts() {
+            showToast('Loading more products...');
+            // Simulate loading
+            setTimeout(() => {
+                showToast('All products loaded!');
+            }, 1000);
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+        });
+    </script>
+</body>
+</html><!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container text-center">
+            <h2 class="mb-4">Subscribe to Our Newsletter</h2>
+            <p>Get exclusive offers and be the first to know about new arrivals</p>
+            <form class="newsletter-form mt-4" onsubmit="subscribeNewsletter(event)">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Enter your email" required>
+                    <button class="btn btn-warning" type="submit">Subscribe</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>StepUp</h4>
+                    <p>Your premium destination for quality footwear.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="product.html">Products</a>
+                        <a href="about.html">About</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <div class="social-links mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-white">
+            <div class="text-center">
+                <p>&copy; 2024 StepUp. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container">
+        <div class="custom-toast" id="toast">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                <span id="toastMessage">Item added to cart!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

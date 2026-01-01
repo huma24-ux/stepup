@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - StepUp</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="product-detail.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-shoe-prints"></i> StepUp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="product.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="product-detail.html">Featured</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> <span class="badge bg-danger" id="cartCount">0</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Detail -->
+    <div class="container my-5">
+        <div class="product-detail-container p-5">
+            <div class="row">
+                <!-- Product Images -->
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <img id="mainImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUz6dULb-eAdAWfwCFEl7V9tz4IDiNOyzCIA&s" alt="Product" class="main-image">
+                    </div>
+                    <div class="d-flex gap-3">
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2024/4/408381228/BS/AK/IU/8852934/men-semi-formal-shoes-500x500.jpg" alt="Thumbnail 1" class="thumbnail active" onclick="changeImage(this, 'https://picsum.photos/seed/detail1/600/500')">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmMrIkAUFsXUzur71LdSSSMznL-7KRUNnUHw&s" alt="Thumbnail 2" class="thumbnail" onclick="changeImage(this, 'https://picsum.photos/seed/detail2/600/500')">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScywuGD5ZZ9f7SdMuoS34Q4lPjtBDyA-Ta0w&s" alt="Thumbnail 3" class="thumbnail" onclick="changeImage(this, 'https://picsum.photos/seed/detail3/600/500')">
+                        <img src="https://image.made-in-china.com/202f0j00fmLWMCJyLGpl/2023-High-Quality-and-Low-Price-Men-Dress-Shoes-Made-in-China.webp" alt="Thumbnail 4" class="thumbnail" onclick="changeImage(this, 'https://picsum.photos/seed/detail4/600/500')">
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="col-lg-6">
+                    <h1 class="product-title">Urban Runner Pro</h1>
+                    
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="text-muted ms-2">(4.5) | 245 Reviews</span>
+                    </div>
+
+                    <div class="product-price">
+                        $129.99
+                        <span class="old-price">$159.99</span>
+                    </div>
+
+                    <p class="lead">Experience ultimate comfort and style with our Urban Runner Pro. Designed for the modern urban explorer, these shoes combine cutting-edge technology with sleek aesthetics.</p>
+
+                    <!-- Size Selector -->
+                    <h5 class="mb-3">Select Size</h5>
+                    <div class="size-selector">
+                        <button class="size-btn" onclick="selectSize(this)">7</button>
+                        <button class="size-btn" onclick="selectSize(this)">8</button>
+                        <button class="size-btn selected" onclick="selectSize(this)">9</button>
+                        <button class="size-btn" onclick="selectSize(this)">10</button>
+                        <button class="size-btn" onclick="selectSize(this)">11</button>
+                        <button class="size-btn" onclick="selectSize(this)">12</button>
+                    </div>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#sizeChartModal">
+                        <small class="text-muted"><i class="fas fa-ruler"></i> Size Chart</small>
+                    </a>
+
+                    <!-- Color Selector -->
+                    <h5 class="mb-3 mt-4">Color</h5>
+                    <div class="color-selector">
+                        <div class="color-option selected" style="background: #000;" onclick="selectColor(this)"></div>
+                        <div class="color-option" style="background: #fff; border: 2px solid #ddd;" onclick="selectColor(this)"></div>
+                        <div class="color-option" style="background: #e74c3c;" onclick="selectColor(this)"></div>
+                        <div class="color-option" style="background: #3498db;" onclick="selectColor(this)"></div>
+                    </div>
+
+                    <!-- Quantity Selector -->
+                    <h5 class="mb-3 mt-4">Quantity</h5>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn" onclick="changeQuantity(-1)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="10" readonly>
+                        <button class="quantity-btn" onclick="changeQuantity(1)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-4">
+                        <button class="btn btn-buy-now" onclick="buyNow()">
+                            <i class="fas fa-bolt"></i> Buy Now
+                        </button>
+                        <button class="btn btn-add-cart-detail" onclick="addToCartDetail()">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Product Features -->
+                    <div class="mt-5">
+                        <h5 class="mb-3">Product Features</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Premium leather upper</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Cushioned insole for all-day comfort</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Slip-resistant rubber outsole</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Breathable mesh lining</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 30-day warranty</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details Tabs -->
+            <div class="mt-5">
+                <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button">Description</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="specifications-tab" data-bs-toggle="tab" data-bs-target="#specifications" type="button">Specifications</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button">Reviews</button>
+                    </li>
+                </ul>
+                <div class="tab-content mt-3" id="productTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel">
+                        <p>The Urban Runner Pro represents the pinnacle of modern footwear design. Crafted with meticulous attention to detail, these shoes are perfect for both casual outings and athletic activities. The advanced cushioning system provides exceptional comfort, while the durable outsole ensures longevity and traction on various surfaces.</p>
+                        <p>Whether you're navigating city streets or hitting the gym, the Urban Runner Pro delivers unmatched performance and style. The sleek silhouette pairs well with any outfit, making it a versatile addition to your wardrobe.</p>
+                    </div>
+                    <div class="tab-pane fade" id="specifications" role="tabpanel">
+                        <table class="table">
+                            <tr>
+                                <td><strong>Material</strong></td>
+                                <td>Premium Leather & Mesh</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Weight</strong></td>
+                                <td>280g per shoe</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Heel Height</strong></td>
+                                <td>25mm</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Closure</strong></td>
+                                <td>Lace-up</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Origin</strong></td>
+                                <td>Made in USA</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                        <div class="review-item mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h6>John Doe</h6>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p>Excellent shoes! Very comfortable and stylish. Worth every penny.</p>
+                        </div>
+                        <div class="review-item mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h6>Jane Smith</h6>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <p>Great quality and fit perfectly. Would definitely recommend!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="mt-5">
+            <h3 class="mb-4">Related Products</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="related-product-card" onclick="viewRelatedProduct(1)">
+                        <div class="overflow-hidden">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSouDS4YVp7THIeMaqM7KEHRZLNT4iTYu2oSQ&s" alt="Related Product 1">
+                        </div>
+                        <div class="p-3">
+                            <h6>Sport Elite X</h6>
+                            <p class="mb-0 text-danger fw-bold">$149.99</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="related-product-card" onclick="viewRelatedProduct(2)">
+                        <div class="overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/I/61aQhWU6jFS._UF350,350_QL80_.jpg" alt="Related Product 2">
+                        </div>
+                        <div class="p-3">
+                            <h6>Casual Comfort</h6>
+                            <p class="mb-0 text-danger fw-bold">$89.99</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="related-product-card" onclick="viewRelatedProduct(3)">
+                        <div class="overflow-hidden">
+                            <img src="https://i5.walmartimages.com/seo/jjayotai-Shoes-for-Men-formal-Casual-Shoes-Business-Leather-Shoes-Pointed-Casual-Men-S-Shoes-Flash-Picks_fc486bf4-4e45-43b2-aa37-946f1c59e6f5.4608a76dcddee789630941971a37d1e1.jpeg" alt="Related Product 3">
+                        </div>
+                        <div class="p-3">
+                            <h6>Marathon Master</h6>
+                            <p class="mb-0 text-danger fw-bold">$179.99</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="related-product-card" onclick="viewRelatedProduct(4)">
+                        <div class="overflow-hidden">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT978tXms7jmyJEgC3yD2GZWZ6CYx4VPIZU2g&s" alt="Related Product 4">
+                        </div>
+                        <div class="p-3">
+                            <h6>Street Style</h6>
+                            <p class="mb-0 text-danger fw-bold">$99.99</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Size Chart Modal -->
+    <div class="modal fade" id="sizeChartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Size Chart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="size-chart-table">
+                        <thead>
+                            <tr>
+                                <th>US Size</th>
+                                <th>UK Size</th>
+                                <th>EU Size</th>
+                                <th>Foot Length (cm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>7</td>
+                                <td>6.5</td>
+                                <td>40</td>
+                                <td>25.0</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>7.5</td>
+                                <td>41</td>
+                                <td>25.5</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>8.5</td>
+                                <td>42</td>
+                                <td>26.5</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>9.5</td>
+                                <td>43</td>
+                                <td>27.0</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>10.5</td>
+                                <td>44</td>
+                                <td>27.5</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>11.5</td>
+                                <td>45</td>
+                                <td>28.5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container">
+        <div class="custom-toast" id="toast">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                <span id="toastMessage">Action completed!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        let cartCount = 0;
+        let selectedSize = '9';
+        let selectedColor = 'black';
+        let quantity = 1;
+
+        // Change main image
+        function changeImage(thumbnail, imageSrc) {
+            document.getElementById('mainImage').src = imageSrc;
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            thumbnail.classList.add('active');
+        }
+
+        // Select size
+        function selectSize(button) {
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            selectedSize = button.textContent;
+        }
+
+        // Select color
+        function selectColor(element) {
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        // Change quantity
+        function changeQuantity(change) {
+            const input = document.getElementById('quantity');
+            let newValue = parseInt(input.value) + change;
+            if (newValue >= 1 && newValue <= 10) {
+                input.value = newValue;
+                quantity = newValue;
+            }
+        }
+
+        // Add to cart
+        function addToCartDetail() {
+            cartCount += quantity;
+            document.getElementById('cartCount').textContent = cartCount;
+            showToast(`${quantity} item(s) added to cart!`);
+        }
+
+        // Buy now
+        function buyNow() {
+            addToCartDetail();
+            showToast('Proceeding to checkout...');
+            setTimeout(() => {
+                showToast('Checkout page would open here');
+            }, 1500);
+        }
+
+        // View related product
+        function viewRelatedProduct(productId) {
+            window.location.href = 'product-detail.html?id=' + productId;
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // Load product based on URL parameter
+        function loadProduct() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            if (productId) {
+                // Load specific product data based on ID
+                console.log('Loading product:', productId);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProduct();
+        });
+    </script>
+</body>
+</html>
+<!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container text-center">
+            <h2 class="mb-4">Subscribe to Our Newsletter</h2>
+            <p>Get exclusive offers and be the first to know about new arrivals</p>
+            <form class="newsletter-form mt-4" onsubmit="subscribeNewsletter(event)">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Enter your email" required>
+                    <button class="btn btn-warning" type="submit">Subscribe</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>StepUp</h4>
+                    <p>Your premium destination for quality footwear.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="products.html">Products</a>
+                        <a href="about.html">About</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <div class="social-links mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-white">
+            <div class="text-center">
+                <p>&copy; 2024 StepUp. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container">
+        <div class="custom-toast" id="toast">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                <span id="toastMessage">Item added to cart!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
